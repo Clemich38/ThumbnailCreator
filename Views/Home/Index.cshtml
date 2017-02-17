@@ -1,0 +1,25 @@
+@model ThumbnailCreator.ViewModels.MainModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form class="form-group" method="post" asp-action="Upload" asp-controller="Home" enctype="multipart/form-data">
+    <span>
+        <input type="file" name="files" accept="image/*"multiple>
+    </span>
+    <div style="margin-top:6px;">
+        <input type="submit" value="Upload" class="btn btn-primary btn-xs" />
+    </div>
+</form>
+
+<div>
+    @foreach (var fileName in Model.ImageList)
+    {
+        <!--<div style="margin-top:2px;">-->
+            <img style="margin-top:4px;" src=@fileName alt="Sample Photo"/>
+        <!--</div>-->
+    }
+
+<form  style="margin-top:6px;" class="form-group" method="get" asp-action="Download" asp-controller="Home" enctype="multipart/form-data">
+    <input type="submit" value="Download" class="btn btn-primary btn-xs" />
+</form>
