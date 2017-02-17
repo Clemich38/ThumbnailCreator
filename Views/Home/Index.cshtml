@@ -5,21 +5,24 @@
 
 <form class="form-group" method="post" asp-action="Upload" asp-controller="Home" enctype="multipart/form-data">
     <span>
-        <input type="file" name="files" accept="image/*"multiple>
+        <input type="file" name="files" accept="image/*" multiple>
     </span>
-    <div style="margin-top:6px;">
-        <input type="submit" value="Upload" class="btn btn-primary btn-xs" />
+    <div style="margin-top:12px;">
+        <span style="color:white">Thumbnail size:</span> <br>
+        <span style="color:white">Width: </span><input type="text" name="width" class="form-control input-sm" value="120" />
+        <span style="color:white">Height: </span><input type="text" name="height" class="form-control input-sm" value="90" />
+    </div>
+    <div style="margin-top:12px;">
+        <input type="submit" value="Upload" class="btn btn-default btn-sm" />
     </div>
 </form>
 
 <div>
     @foreach (var fileName in Model.ImageList)
     {
-        <!--<div style="margin-top:2px;">-->
-            <img style="margin-top:4px;" src=@fileName alt="Sample Photo"/>
-        <!--</div>-->
+        <img style="margin-top:4px;" src=@fileName alt="Sample Photo"/>
     }
 
 <form  style="margin-top:6px;" class="form-group" method="get" asp-action="Download" asp-controller="Home" enctype="multipart/form-data">
-    <input type="submit" value="Download" class="btn btn-primary btn-xs" />
+    <input type="submit" value="Download" class="btn btn-default btn-sm" />
 </form>

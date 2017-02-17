@@ -1,8 +1,6 @@
-using System;
 using System.IO;
 using System.IO.Compression;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
@@ -38,7 +36,7 @@ namespace ThumbnailCreator.Controllers
             return View(viewModel);
         }
 
-        public async Task<IActionResult> Upload(ICollection<IFormFile> files)
+        public IActionResult Upload(ICollection<IFormFile> files, int width, int height)
         {
             Configuration.Default.AddImageFormat(new JpegFormat());
             Configuration.Default.AddImageFormat(new BmpFormat());
@@ -70,7 +68,7 @@ namespace ThumbnailCreator.Controllers
                     // Create a new image file to store the resize image
                     using (var output = System.IO.File.OpenWrite(Path.Combine(uplaodPath, "thumb_" + file.FileName)))
                     {
-                        image.Resize(100, 100);
+                        image.Resize(width, height);
                         image.Save(output);
                     }
                 }
